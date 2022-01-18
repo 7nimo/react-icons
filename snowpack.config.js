@@ -18,6 +18,7 @@ export default {
   ],
   alias: {
     "@app": "./src",
+    "@assets": "./assets",
     "@components": "./src/components",
   },
   routes: [

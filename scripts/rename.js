@@ -8,6 +8,7 @@ const regex = /(?<=streamline-)(.*)(?=--free+)/g;
 
 try {
   const files = await getFiles(srcDir);
+  // const destFiles = await getDestFiles(files, regex, srcDir, outDir);
 
   for (const file of files) {
     await fs.mkdir(file.outDir, { recursive: true });
@@ -39,6 +40,14 @@ async function getFiles(path) {
 
   return files;
 }
+
+// async function getDestFiles(files, regex, srcDir, outDir) {
+//   const dir = join(outDir, relative(srcDir, path))
+//   const destFiles = files.map((file) => ({
+//     name: file.name.match(regex).pop() + extname(file.name).toLowerCase(),
+//     outDir: join(outDir)
+//   }))
+// }
 
 async function renameFiles(files) {
   files.forEach((file) => {

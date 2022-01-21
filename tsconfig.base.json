@@ -1,0 +1,10 @@
+{
+  "extends": "@7nimo/dev/config/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "paths": {
+      "@7nimo/dev/*": ["dev/src/*"]
+    },
+    "skipLibCheck": true
+  }
+}

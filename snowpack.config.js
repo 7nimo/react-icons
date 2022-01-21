@@ -5,6 +5,7 @@ export default {
     src: { url: "/dist" },
   },
   plugins: [
+    ['@snowpack/plugin-babel'],
     ["@snowpack/plugin-sass", { style: "compressed" }],
     "@snowpack/plugin-react-refresh",
     "@snowpack/plugin-dotenv",
@@ -17,9 +18,10 @@ export default {
     ],
   ],
   alias: {
-    "@app": "./src",
     "@assets": "./assets",
+    "@app": "./src",
     "@components": "./src/components",
+    "@packages": ".src/packages",
   },
   routes: [
     /* Enable an SPA Fallback in development: */
@@ -30,7 +32,7 @@ export default {
     // "bundle": true,
   },
   packageOptions: {
-    /* ... */
+    polyfillNode: true,
   },
   devOptions: {
     /* ... */

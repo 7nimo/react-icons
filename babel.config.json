@@ -1,0 +1,46 @@
+{
+  "plugins": [
+    "@babel/plugin-transform-typescript", 
+    // "@babel/plugin-transform-react-jsx",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-import-meta",
+    ["@babel-plugin-module-extension-resolver", {
+      "dstExtension": ".js",
+      "srcExtensions": [".ts", ".tsx", ".js"]
+    }],
+    [
+      "@svgr/babel-plugin-add-jsx-attribute",
+      {
+        "elements": ["svg"],
+        "attributes": [
+          {
+            "name": "width",
+            "value": "`${size}px`",
+            "spread": false,
+            "literal": false,
+            "position": "start"
+          },
+          {
+            "name": "height",
+            "value": "`${size}px`",
+            "spread": false,
+            "literal": false,
+            "position": "start"
+          }
+        ]
+      }
+    ],
+    [
+      "@svgr/babel-plugin-remove-jsx-attribute",
+      {
+        "elements": ["svg"],
+        "attributes": ["transform"]
+      }
+    ]
+  ],
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ]
+}

@@ -1,8 +1,8 @@
-import { extname, join, relative } from "path";
-import fs from "fs/promises";
+import fs from 'fs/promises';
+import { extname, join, relative } from 'path';
 
-const srcDir = "../assets/streamline/collection/";
-const outDir = "../assets/icons/streamline/";
+const srcDir = '../assets/streamline/collection/';
+const outDir = '../assets/icons/streamline/';
 
 const regex = /(?<=streamline-)(.*)(?=--free+)/g;
 
@@ -19,22 +19,23 @@ try {
   console.error(err);
 }
 
-async function getFiles(path) {
+async function getFiles (path) {
   const entries = await fs.readdir(path, { withFileTypes: true });
 
   const files = entries
     .filter((entry) => entry.isFile())
     .map((file) => ({
-      oldName: file.name,
-      path: path + file.name,
       name: file.name.match(regex).pop() + extname(file.name).toLowerCase(),
+      oldName: file.name,
       outDir: join(outDir, relative(srcDir, path)),
+      path: path + file.name
     }));
 
   const folders = entries.filter((entry) => entry.isDirectory());
 
   for (const folder of folders) {
     const nestedFiles = await getFiles(`${path}${folder.name}/`);
+
     files.push(...nestedFiles);
   }
 
@@ -49,7 +50,7 @@ async function getFiles(path) {
 //   }))
 // }
 
-async function renameFiles(files) {
+function renameFiles (files) {
   files.forEach((file) => {
     try {
       fs.rename(file.path, join(file.outDir, file.name));

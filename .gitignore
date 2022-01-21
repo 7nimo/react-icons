@@ -10,5 +10,5 @@
 /.pnp.*
 
 node_modules
-assets/streamline
 build
+assets
